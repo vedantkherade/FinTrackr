@@ -1,3 +1,27 @@
-.navbar{
-    background-color: var(--theme);
+.navbar {
+  position: sticky;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--theme);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-heading {
+  color: white;
+  font-weight: 500;
+  margin: 0px;
+  font-size: 1.2rem;
+}
+.navbar-link {
+  color: #e3e3e3;
+  font-weight: 500;
+  margin: 0px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navbar-link:hover {
+  color: white;
+  transition: all 0.3s;
 }
