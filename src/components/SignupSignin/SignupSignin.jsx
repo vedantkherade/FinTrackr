@@ -4,8 +4,8 @@ import './styles.css';
 import Input from '../input/Input';
 import Button from '../Button/Button';
 import { toast } from 'react-toastify';
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from '../../firebase';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword,signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth, db, provider } from '../../firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 
@@ -116,11 +116,44 @@ function SignupSignin() {
       toast.error(e.message);
     }
     }else{
-      toast.error("Doc Already Exists!");
+      // toast.error("Doc Already Exists!");
       setLoading(false);
     }
   }
 
+  function googleAuth() {
+    setLoading(true);
+    try{
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log("user>>>", user);
+        createDoc(user);
+        setLoading(false);
+        navigate("/dashboard");
+        toast.success("User Authenticated!");
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        setLoading(false);
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+  
+        // ...
+      });
+    }catch(e){
+      setLoading(false);
+      toast.error(e.message);
+    }
+
+  }
   return (
     <>
       {loginForm ? (
@@ -152,6 +185,7 @@ function SignupSignin() {
             />
             <p className='p-login'>or</p>
             <Button
+            onClick={googleAuth}
               text={loading ? "Loading..." : "Login Using Google"}
               blue={true}
             />
@@ -198,6 +232,7 @@ function SignupSignin() {
             />
             <p className='p-login'>or</p>
             <Button
+              onClick={googleAuth}
               text={loading ? "Loading..." : "Signup Using Google"}
               blue={true}
             />
