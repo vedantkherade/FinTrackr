@@ -5,3 +5,28 @@
   width: 100vw;
   height: 90vh;
 }
+
+.charts-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* left big, right small */
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden; 
+}
+
+/* Left chart */
+.chart-card.large {
+  height: 450px;
+}
+
+/* Right chart */
+.chart-card.small {
+  height: 450px;
+}
