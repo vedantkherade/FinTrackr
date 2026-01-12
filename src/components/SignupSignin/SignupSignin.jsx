@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { data, useNavigate } from 'react-router-dom';
 import './styles.css';
-import Input from '../input/Input';
+import Input from '../Input/Input';
 import Button from '../Button/Button';
 import { toast } from 'react-toastify';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword,signInWithPopup, GoogleAuthProvider } from "firebase/auth";
