@@ -3,8 +3,7 @@ import Header from '../components/Header/Header'
 import Cards from '../components/Cards/Cards'
 import { Modal,  } from 'antd';
 import dayjs from 'dayjs';
-import AddExpense from '../components/Modals/addExpense.jsx';
-import AddIncome from '../components/Modals/addIncome.jsx';
+
 import { addDoc, collection, getDocs, query } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -12,6 +11,9 @@ import { toast } from 'react-toastify';
 import TransactionsTable from '../components/TransactionsTable/TransactionsTable.jsx';
 import Charts from '../components/Charts/Charts.jsx';
 import NoTransactions from '../components/NoTransactions.jsx';
+import AddExpense from "../components/Modals/AddExpense";
+import AddIncome from "../components/Modals/AddIncome";
+
 
 
 function Dashboard() {
@@ -153,8 +155,10 @@ let sortedTransactions = transactions.sort((a, b) => {
             handleIncomeCancel={() => setIsIncomeModalVisible(false)}
             onFinish={onFinish}
           />
+          
           <TransactionsTable transactions={transactions} addTransaction={addTransaction} fetchTransactions={fetchTransactions}/>
         </>
+      
       )}
     </div>
   );
