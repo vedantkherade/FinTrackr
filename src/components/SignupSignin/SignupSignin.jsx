@@ -36,7 +36,7 @@ function SignupSignin() {
             // Signed up
             const user = userCredential.user;
             // console.log("User>>>", user);
-            toast.success("User Created!");
+            toast.success("Successfully Signed Up!");
             setLoading(false);
             setName("");
             setEmail("");
@@ -74,7 +74,7 @@ function SignupSignin() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          toast.success("User Logged In!");
+          toast.success("Logged In Successfully!");
           // console.log("User Logged in", user);
           setLoading(false);
           navigate("/dashboard");
@@ -110,7 +110,7 @@ function SignupSignin() {
           photoURL: user.photoURL ? user.photoURL : "",
           createdAt: new Date(),
     });
-    toast.success("Doc Created!");
+    toast.success("Account Created!");
     setLoading(false);
     }catch(e){
       toast.error(e.message);
@@ -135,7 +135,7 @@ function SignupSignin() {
         createDoc(user);
         setLoading(false);
         navigate("/dashboard");
-        toast.success("User Authenticated!");
+        toast.success("User Authenticated Successfully!");
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       })
