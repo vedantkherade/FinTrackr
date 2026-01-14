@@ -3,6 +3,8 @@ import Radio from 'antd/es/radio/radio';
 import React, { useState } from 'react'
 import searchImg from "../../assets/search.svg"
 import { unparse, parse } from "papaparse";
+import './styles.css';
+
 
 function TransactionsTable({transactions, addTransaction, fetchTransactions}) {
     const [search, setSearch] = useState("");

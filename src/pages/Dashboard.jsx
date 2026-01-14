@@ -4,7 +4,7 @@ import Cards from '../components/Cards/Cards'
 import { Modal,  } from 'antd';
 import dayjs from 'dayjs';
 
-import { addDoc, collection, getDocs, query } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, deleteDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
@@ -99,6 +99,32 @@ useEffect(() => {
     setExpenses(expensesTotal);
     setCurrentBalance(incomeTotal - expensesTotal);
   }
+  
+  //reset balance function
+  async function resetBalance() {
+    try {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const uid = user.uid;
+
+      const txnRef = collection(db, "users", uid, "transactions");
+      const snapshot = await getDocs(txnRef);
+
+      const deletePromises = snapshot.docs.map((doc) => deleteDoc(doc.ref));
+      await Promise.all(deletePromises);
+      // for resetting local state after balance reset
+      setTransactions([]);
+      if (transactions.length === 0) {
+        toast.info("No transactions to delete");
+        return;
+      }
+      toast.success("All data reset successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to reset balance");
+    }
+  }
 
   // Calculate the initial balance, income, and expenses
   useEffect(() => {
@@ -127,7 +153,7 @@ let sortedTransactions = transactions.sort((a, b) => {
   })
 
   return (
-    <div>
+    <div className="dashboard-container">
       <Header />
 
       {loading ? (
@@ -140,6 +166,8 @@ let sortedTransactions = transactions.sort((a, b) => {
             expenses={expenses}
             showExpenseModal={() => setIsExpenseModalVisible(true)}
             showIncomeModal={() => setIsIncomeModalVisible(true)}
+            resetBalance={resetBalance}
+            transactions={transactions}
           />
 
           {transactions.length !=0 ? <Charts sortedTransactions={sortedTransactions} /> : <NoTransactions/>}

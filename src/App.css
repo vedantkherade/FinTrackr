@@ -30,3 +30,7 @@
 .chart-card.small {
   height: 450px;
 }
+
+.dashboard-container {
+  padding-bottom: 1rem;
+}
