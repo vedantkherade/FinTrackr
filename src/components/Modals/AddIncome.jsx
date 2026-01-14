@@ -1,5 +1,7 @@
 import React from "react";
 import {Card,Col,Row,Button,Modal,Form,Input,DatePicker,Select,} from "antd";
+import dayjs from "dayjs";
+
 
 function AddIncome({
   isIncomeModalVisible,
@@ -54,7 +56,7 @@ function AddIncome({
             { required: true, message: "Please select the income date!" },
           ]}
         >
-          <DatePicker format="YYYY-MM-DD" className="custom-input" />
+          <DatePicker format="YYYY-MM-DD" className="custom-input"  disabledDate={(current) =>current && current > dayjs().endOf("day")} />
         </Form.Item>
         <Form.Item
           style={{ fontWeight: 600 }}

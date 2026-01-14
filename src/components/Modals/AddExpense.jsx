@@ -1,5 +1,7 @@
 import React from "react";
 import {Card,Col,Row,Button,Modal,Form,Input,DatePicker,Select,} from "antd";
+import dayjs from "dayjs";
+
 function AddExpense({
   isExpenseModalVisible,
   handleExpenseCancel,
@@ -54,7 +56,7 @@ function AddExpense({
             { required: true, message: "Please select the expense date!" },
           ]}
         >
-          <DatePicker className="custom-input" format="YYYY-MM-DD" />
+          <DatePicker className="custom-input" format="YYYY-MM-DD" disabledDate={(current) =>current && current > dayjs().endOf("day")}/>
         </Form.Item>
         <Form.Item
           label="Tag"
