@@ -22,7 +22,7 @@ function SignupSignin() {
 
   function signupWithEmail(e) {
     setLoading(true);
-    console.log(name, email, password, confirmPassword);
+    // console.log(name, email, password, confirmPassword);
 
     if (
       name !== "" &&
@@ -64,8 +64,8 @@ function SignupSignin() {
   }
 
   function loginUsingEmail() {
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
 
     setLoading(true);
 
