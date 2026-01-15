@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword,signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, db, provider } from '../../firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import GoogleIcon from "../../assets/google.svg";
 
 
 
@@ -188,6 +189,7 @@ function SignupSignin() {
             onClick={googleAuth}
               text={loading ? "Loading..." : "Login Using Google"}
               blue={true}
+              icon={GoogleIcon}
             />
             <p className='p-login' onClick={() => setLoginForm(!loginForm)}>Or Don't Have An Account? Click Here</p>
           </form>
@@ -235,6 +237,7 @@ function SignupSignin() {
               onClick={googleAuth}
               text={loading ? "Loading..." : "Signup Using Google"}
               blue={true}
+              icon={GoogleIcon}
             />
             <p className='p-login' onClick={() => setLoginForm(!loginForm)}>Or Have An Account Already? Click Here</p>
           </form>

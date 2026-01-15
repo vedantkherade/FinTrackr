@@ -11,7 +11,8 @@
   display: flex !important;
   align-items: center;
   justify-content: center;
-  height: auto !important;
+  /* height: auto !important; */
+  height: 35px; 
 }
 
 .btn:hover {
@@ -29,4 +30,22 @@
   background-color: #fff !important;
   color: var(--theme) !important;
   transition: all 0.3s;
+}
+
+
+
+.google-icon-wrapper {
+  background: white;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.google-icon-wrapper img {
+  width: 16px;
+  height: 16px;
 }
