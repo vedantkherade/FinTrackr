@@ -11,13 +11,13 @@ import GoogleIcon from "../../assets/google.svg";
 
 
 
-function SignupSignin() {
+function SignupSignin({isLogin = true}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loginForm, setLoginForm] = useState(false);
+  const [loginForm, setLoginForm] = useState(isLogin);
   const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
 
